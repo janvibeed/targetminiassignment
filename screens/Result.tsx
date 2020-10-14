@@ -1,29 +1,26 @@
 import { StackScreenProps } from '@react-navigation/stack';
 import * as React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, Button, View } from 'react-native';
 import { RootStackParamList } from '../types';
 
 export default function ResultScreen({navigation,}: StackScreenProps<RootStackParamList, 'Result'>) {
   return (
-    <div style={{margin:'auto'}}>
-      <Text>Chapter Name Practice Test</Text>
-      <div style={{backgroundColor:'skyblue',margin:'auto'}}>
-      <Text>Total Number of Questions: 3</Text><br/><br/>
-      <Text>Correct: 2</Text><br/><br/>
-      <Text>Incorrect: 1</Text><br/><br/>
-      </div>
-      <br/><br/><br/>
-      <div  style={{
+    <View style={styles.container}>
+      <Text>Chapter Name Practice Test{"\n\n\n\n"}</Text>
+      <View style={{backgroundColor:'skyblue'}}>
+      <Text>Total Number of Questions: 3{"\n\n"}</Text>
+      <Text>Correct: 2{"\n\n"}</Text>
+      <Text>Incorrect: 1{"\n\n"}</Text>
+      </View>
+      <Text>{"\n\n\n"}</Text>
+      <View style={{
           display: 'flex',
           justifyContent:'center',
-          alignContent:'center',textAlign:'center',width:'100%'
+          alignContent:'center'
         }}>
-      <button style={{color:'white',textAlign:'center',backgroundColor:'blue'}}
-              onClick={() => navigation.navigate('Root')}>
-              Retake</button>
-      </div>
-      <br/>
-    </div>
+      <Button onPress={() => navigation.navigate('Root')} title="Retake"></Button>
+      </View>
+    </View>
   );
 }
 

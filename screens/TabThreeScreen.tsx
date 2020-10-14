@@ -1,37 +1,35 @@
 import React,{Component} from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { Button, StyleSheet, TouchableOpacity } from 'react-native';
 import { loremIpsum} from 'lorem-ipsum';
 // import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import RadioGroup, {Radio} from 'react-native-radio-input';
 
 function smiley(value){
-    
-  if(value === "B"){
-    
-    return(
-      <div>
-      <Text style={styles.title}>Explanation: "{loremIpsum({count:5})}</Text>
-      <View style={styles.container}>
-        <Text style={styles.title}><span role="img">{String.fromCodePoint(0X1f642)}</span> Correct Answer!</Text>
-      </View>
-      </div>
-    );
+    if(value === "B"){
+      return(
+        <View>
+        <Text style={styles.title}>Explanation: {loremIpsum({count:5})}</Text>
+        <View style={styles.container}>
+          <Text style={styles.title}>{String.fromCodePoint(0X1f642)} Correct Answer!</Text>
+        </View>
+        </View>
+      );
+    }
+    else if(value === null){
+      return(null);
+    }
+    else{
+      return(
+        <View>
+        <Text style={styles.title}>Explanation: {loremIpsum({count:5})}</Text>
+        <View style={styles.container}>
+          <Text style={styles.title}>{String.fromCodePoint(0X1f641)} Wrong Answer...</Text>
+        </View>
+        </View>
+       );
+    }
   }
-  else if(value === null){
-    return(null);
-  }
-  else{
-    return(
-      <div>
-      <Text style={styles.title}>Explanation: "{loremIpsum({count:5})}</Text>
-      <View style={styles.container}>
-        <Text style={styles.title}><span role="img">{String.fromCodePoint(0X1f641)}</span>"Wrong Answer..."</Text>
-      </View>
-      </div>
-     );
-  }
-}
 
 class TabThreeScreen extends React.Component<{navigation}>{
   state={
@@ -41,32 +39,24 @@ class TabThreeScreen extends React.Component<{navigation}>{
     return (
       <View style={styles.container}>
         <Text style={styles.title}>{loremIpsum({count:3})}</Text>
-        <View lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+        <View lightColor="#eee" darkColor="rgba(255,255,255,0.1)"/>
         <RadioGroup getChecked = {(value)=>{this.setState({value:value})}}>
           <Radio label={"Option A"} value={"A"}/>
           <Radio label={"Option B"} value={"B"}/>
           <Radio label={"Option C"} value={"C"}/>
           <Radio label={"Option D"} value={"D"}/>
         </RadioGroup>
-    <View style={styles.container}>{smiley(this.state.value)}</View>
-    <br/><br/>
-    <div  style={{
-          display: 'flex',
-          justifyContent:'center',
-          alignContent:'center',textAlign:'center',width:'100%'
-        }}>
-      <br/><br/><br/>
-      <button style={{color:'white',textAlign:'center',backgroundColor:'blue'}}
-              onClick={() => this.props.navigation.navigate('Result')}>
-              SUBMIT</button>
-
-      </div>
+        <View style={styles.container}>{smiley(this.state.value)}</View>
+        <Text>{"\n\n"}</Text>
+        <View style={{display: 'flex',justifyContent:'center',alignContent:'center',width:'100%'}}>
+          <Button onPress={() => this.props.navigation.navigate('Result')} title="SUBMIT">
+          </Button>
+        </View>
       </View>
-      
     );
-    };
-    
-  }
+  };
+}
+
 export default TabThreeScreen;
 
 
@@ -92,3 +82,5 @@ const styles = StyleSheet.create({
     width:'50%',
   },
 });
+
+// style={{color:'white',textAlign:'center',backgroundColor:'blue'}}

@@ -11,12 +11,12 @@ function smiley(value){
   if(value === "C"){
     
     return(
-      <div>
-      <Text style={styles.title}>{"Explanation: "+loremIpsum({count:5})}</Text>
+      <View>
+      <Text style={styles.title}>Explanation: {loremIpsum({count:5})}</Text>
       <View style={styles.container}>
-        <Text style={styles.title}><span role="img">{String.fromCodePoint(0X1f642)}</span>{ "Correct Answer!"}</Text>
+        <Text style={styles.title}>{String.fromCodePoint(0X1f642)} Correct Answer!</Text>
       </View>
-      </div>
+      </View>
     );
   }
   else if(value === null){
@@ -24,12 +24,12 @@ function smiley(value){
   }
   else{
     return(
-      <div>
-      <Text style={styles.title}>{"Explanation: "+loremIpsum({count:5})}</Text>
+      <View>
+      <Text style={styles.title}>Explanation: {loremIpsum({count:5})}</Text>
       <View style={styles.container}>
-        <Text style={styles.title}><span role="img">{String.fromCodePoint(0X1f641)}</span> {"Wrong Answer..."}</Text>
+        <Text style={styles.title}>{String.fromCodePoint(0X1f641)} Wrong Answer...</Text>
       </View>
-      </div>
+      </View>
      );
   }
 }
@@ -44,22 +44,20 @@ class TabTwoScreen extends React.Component{
     return (
       <View style={styles.container}>
         <Text style={styles.title}>{loremIpsum({count:3})}</Text>
-        <View lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+        <View lightColor="#eee" darkColor="rgba(255,255,255,0.1)"/>
         <RadioGroup getChecked = {(value)=>{this.setState({value:value})}}>
           <Radio label={"Option A"} value={"A"}/>
           <Radio label={"Option B"} value={"B"}/>
           <Radio label={"Option C"} value={"C"}/>
           <Radio label={"Option D"} value={"D"}/>
         </RadioGroup>
-    <View style={styles.container}>{smiley(this.state.value)}</View>
+        <View style={styles.container}>{smiley(this.state.value)}</View>
       </View>
-      
     );
-    };
-    
-  }
-export default TabTwoScreen;
+  };
+}
 
+export default TabTwoScreen;
 
 const styles = StyleSheet.create({
   container: {
